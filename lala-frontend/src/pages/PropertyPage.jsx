@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Star, Search, Calendar, Users, Filter, Heart, Share, Wifi, Car, Coffee,  } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import { MapPin, Star, Search, Calendar, Users, Filter, Heart, Share, Wifi, Car, Coffee } from 'lucide-react';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const PropertyPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,11 +15,12 @@ const PropertyPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
 
+  // Updated properties array with the same data structure
   const properties = [
     {
       id: 1,
       title: "Luxury Hilltop Villa",
-      description: "An exclusive hilltop villa offering stunning views of the Rwandan countryside and premium amenities.",
+      description: "An exclusive hilltop villa offering stunning views of the Rwandan countryside.",
       price: 100,
       location: "Musanze, Rwanda",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc2YVR_J99yM4coSYxP9kQn-oEJVceTKQlOg&s",
@@ -103,16 +104,16 @@ const PropertyPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-orange-50 min-h-screen">
       <Navbar/>
       <div className="container mx-auto px-4 py-8">
         <motion.div {...fadeInUp} className="mb-8">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-400" />
             <input
               type="text"
               placeholder="Search properties..."
-              className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              className="w-full pl-12 pr-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -120,7 +121,7 @@ const PropertyPage = () => {
           
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="mt-4 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition duration-200"
+            className="mt-4 flex items-center gap-2 text-orange-700 hover:text-orange-900 transition duration-200"
           >
             <Filter className="w-5 h-5" />
             {showFilters ? 'Hide Filters' : 'Show Filters'}
@@ -135,7 +136,7 @@ const PropertyPage = () => {
               className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4"
             >
               <select
-                className="px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500"
                 value={filters.roomType}
                 onChange={(e) => setFilters({ ...filters, roomType: e.target.value })}
               >
@@ -147,7 +148,7 @@ const PropertyPage = () => {
               </select>
 
               <select
-                className="px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500"
                 value={filters.priceRange}
                 onChange={(e) => setFilters({ ...filters, priceRange: e.target.value })}
               >
@@ -158,14 +159,14 @@ const PropertyPage = () => {
               </select>
 
               <select
-                className="px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500"
                 value={filters.location}
                 onChange={(e) => setFilters({ ...filters, location: e.target.value })}
               >
                 <option value="">All Locations</option>
-                <option value="Melbourne">Melbourne</option>
-                <option value="Gold Coast">Gold Coast</option>
-                <option value="Sydney">Sydney</option>
+                <option value="Kigali">Kigali</option>
+                <option value="Musanze">Musanze</option>
+                <option value="Rubavu">Rubavu</option>
               </select>
             </motion.div>
           )}
@@ -182,7 +183,7 @@ const PropertyPage = () => {
                 <img
                   src={property.image}
                   alt={property.title}
-                  className="w-full h-64 object-cover uppercase"
+                  className="w-full h-64 object-cover"
                 />
                 <button
                   onClick={() => toggleFavorite(property.id)}
@@ -191,8 +192,8 @@ const PropertyPage = () => {
                   <Heart
                     className={`w-5 h-5 ${
                       favorites.includes(property.id)
-                        ? 'text-red-500 fill-current'
-                        : 'text-gray-600'
+                        ? 'text-orange-500 fill-current'
+                        : 'text-gray-700'
                     }`}
                   />
                 </button>
@@ -200,17 +201,17 @@ const PropertyPage = () => {
 
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-lg font-bold text-gray-900 uppercase">{property.title}</h2>
+                  <h2 className="text-lg font-bold text-gray-900">{property.title}</h2>
                   <div className="flex items-center gap-1">
-                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star className="w-5 h-5 text-orange-400 fill-current" />
                     <span className="text-gray-700">{property.rating}</span>
                   </div>
                 </div>
 
-                <p className="text-gray-600 mb-4">{property.description}</p>
+                <p className="text-gray-700 mb-4">{property.description}</p>
 
                 <div className="flex items-center gap-2 mb-4">
-                  <MapPin className="w-5 h-5 text-gray-500" />
+                  <MapPin className="w-5 h-5 text-orange-500" />
                   <span className="text-gray-700">{property.location}</span>
                 </div>
 
@@ -218,12 +219,15 @@ const PropertyPage = () => {
                   {property.amenities.map((amenity) => (
                     <div
                       key={amenity}
-                      className="tooltip"
+                      className="tooltip group relative"
                       data-tip={amenity}
                     >
-                      <div className="p-2 bg-gray-100 rounded-lg">
+                      <div className="p-2 bg-orange-100 rounded-lg hover:bg-orange-200 transition duration-200">
                         {amenityIcons[amenity]}
                       </div>
+                      <span className="tooltip-text invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm">
+                        {amenity}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -233,21 +237,21 @@ const PropertyPage = () => {
                     <img
                       src={property.host.image}
                       alt={property.host.name}
-                      className="w-8 h-8 rounded-full"
+                      className="w-8 h-8 rounded-full border-2 border-orange-200"
                     />
-                    <span className="text-sm text-gray-600">{property.host.name}</span>
+                    <span className="text-sm text-gray-700">{property.host.name}</span>
                   </div>
-                  <span className="text-md font-bold text-gray-600">${property.price} / Night</span>
+                  <span className="text-md font-bold text-orange-700">${property.price} / Night</span>
                 </div>
 
                 <div className="flex gap-2">
-                  <button className="flex-1 bg-blue-900 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 flex items-center justify-center gap-2">
+                  <a href='/login' className="flex-1 bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-700 transition duration-200 flex items-center justify-center gap-2">
                     <Calendar className="w-5 h-5" />
                     Book Now
-                  </button>
-                  <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
-                    <Share className="w-5 h-5 text-gray-600" />
-                  </button>
+                  </a>
+                  <a href='/login' className="p-2 border border-orange-200 rounded-lg hover:bg-orange-50 transition duration-200">
+                    <Share className="w-5 h-5 text-orange-700" />
+                  </a>
                 </div>
               </div>
             </motion.div>

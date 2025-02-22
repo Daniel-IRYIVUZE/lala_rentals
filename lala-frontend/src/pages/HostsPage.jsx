@@ -7,7 +7,8 @@ import {
   MessageSquare, 
   Home,
   ChevronRight,
-  Search
+  Search,
+  CheckCircle
 } from 'lucide-react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
@@ -29,7 +30,8 @@ const HostsPage = () => {
       reviews: 120,
       badges: ["Superhost", "Local Expert"],
       languages: ["English", "Kinyarwanda", "French"],
-      responseTime: "within an hour"
+      responseTime: "within an hour",
+      verifiedStatus: true
     },
     {
       id: 2,
@@ -37,30 +39,31 @@ const HostsPage = () => {
       bio: "Passionate about hospitality, specializing in guest houses with beautiful lake views and serene surroundings.",
       contact: "aline.m@example.com",
       location: "Rubavu, Rwanda",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
+       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
       rating: 4.7,
       properties: 6,
       reviews: 3,
       badges: ["Superhost", "Quick Responder"],
       languages: ["English", "Kinyarwanda"],
-      responseTime: "within 2 hours"
+      responseTime: "within 2 hours",
+      verifiedStatus: true
     },
     {
       id: 3,
       name: "Blessing Keza",
       bio: "Former travel guide turned luxury villa host, ensuring top-tier experiences in Rwanda's scenic regions.",
-      contact: "blessing.k@gmail.com.com",
+      contact: "blessing.k@gmail.com",
       location: "Musanze, Rwanda",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
+       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
       rating: 4.9,
       properties: 2,
       reviews: 8,
       badges: ["Superhost", "Luxury Stays Expert"],
       languages: ["English", "French", "Swahili"],
-      responseTime: "within an hour"
+      responseTime: "within an hour",
+      verifiedStatus: true
     }
-  ]
-  ;
+  ];
 
   const locations = [...new Set(hosts.map(host => host.location))];
   
@@ -72,11 +75,11 @@ const HostsPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       <Navbar/>
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-purple-600">
+          <h1 className="text-4xl font-bold mb-4 text-gray-800">
             Meet Our Outstanding Hosts
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -91,13 +94,13 @@ const HostsPage = () => {
             <input
               type="text"
               placeholder="Search hosts..."
-              className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-200 focus:ring-2 focus:ring-orange-800 focus:border-transparent transition-all"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <select
-            className="w-full md:w-1/4 px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all"
+            className="w-full md:w-1/4 px-4 py-3 rounded-full border border-gray-200 focus:ring-2 focus:ring-orange-800 focus:border-transparent transition-all"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -115,17 +118,17 @@ const HostsPage = () => {
               key={host.id}
               className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300"
             >
-              <div className="relative">
+              <div className="relative bg-orange-50 p-6 flex flex-col items-center">
                 <img
                   src={host.image}
                   alt={host.name}
-                  className="w-40 h-15 object-cover"
+                  className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-white shadow-lg"
                 />
-                <div className="absolute top-4 right-4 flex gap-2">
+                <div className="flex gap-2 flex-wrap justify-center">
                   {host.badges.map((badge, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-blue-900 text-white text-xs rounded-full font-medium"
+                      className="px-3 py-1 bg-orange-800 text-white text-xs rounded-full font-medium"
                     >
                       {badge}
                     </span>
@@ -135,7 +138,12 @@ const HostsPage = () => {
               
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-bold text-gray-800">{host.name}</h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-gray-800">{host.name}</h2>
+                    {host.verifiedStatus && (
+                      <CheckCircle className="text-green-500 w-5 h-5" />
+                    )}
+                  </div>
                   <div className="flex items-center">
                     <Star className="text-yellow-400 w-5 h-5 mr-1" />
                     <span className="font-semibold">{host.rating}</span>
@@ -144,21 +152,21 @@ const HostsPage = () => {
 
                 <p className="text-gray-600 mb-4">{host.bio}</p>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div className="flex items-center text-gray-600">
-                    <MapPin className="w-5 h-5 mr-2 text-blue-900" />
+                    <MapPin className="w-5 h-5 mr-2 text-orange-800" />
                     {host.location}
                   </div>
                   <div className="flex items-center text-gray-600">
-                    <Mail className="w-5 h-5 mr-2 text-blue-900" />
+                    <Mail className="w-5 h-5 mr-2 text-orange-800" />
                     {host.contact}
                   </div>
                   <div className="flex items-center text-gray-600">
-                    <Home className="w-5 h-5 mr-2 text-blue-900" />
+                    <Home className="w-5 h-5 mr-2 text-orange-800" />
                     {host.properties} Properties
                   </div>
                   <div className="flex items-center text-gray-600">
-                    <MessageSquare className="w-5 h-5 mr-2 text-blue-900" />
+                    <MessageSquare className="w-5 h-5 mr-2 text-orange-800" />
                     Responds {host.responseTime}
                   </div>
                 </div>
@@ -167,32 +175,37 @@ const HostsPage = () => {
                   {host.languages.map((language, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                      className="px-3 py-1 bg-orange-50 text-orange-800 rounded-full text-sm"
                     >
                       {language}
                     </span>
                   ))}
                 </div>
 
-                <button className="mt-6 w-full bg-gradient-to-r from-blue-900 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center group">
+                <a href="/login" className="mt-6 w-full bg-orange-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-all flex items-center justify-center group">
                   View Properties
                   <ChevronRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
         </div>
 
         {/* Become a Host CTA */}
-        <div className="mt-16 text-center bg-gradient-to-r from-blue-900 to-purple-600 rounded-2xl p-8 text-white">
+        <div className="mt-16 text-center bg-orange-800 rounded-2xl p-8 text-white">
           <Award className="w-12 h-12 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4">Ready to Become a Host?</h2>
           <p className="mb-6 max-w-2xl mx-auto">
             Join our community of exceptional hosts and start earning by sharing your property with travelers from around the world.
           </p>
-          <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            Register as a Host
-          </button>
+          <div className="flex gap-4 justify-center">
+            <a href='/signup' className="bg-white text-orange-800 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all">
+              Register as a Host
+            </a>
+            <a href='/services' className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all">
+              Learn More
+            </a>
+          </div>
         </div>
       </div>
       <Footer/>

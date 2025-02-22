@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Home, Book, BookOpen, Plus, Settings, LogOut } from 'lucide-react';
+import { Menu, X, Book, Settings, LogOut, Home,Search,BookOpen,Plus,CheckCircle,LayoutGrid,User,ClipboardList} from 'lucide-react';
 import BookHouse from '../components/dash/BookHouse';
 import ManageHouse from '../components/dash/ManageHouse';
 import BookedHouse from '../components/dash/BookedHouse';
 import { AvailableHouse } from '../components/dash/AvalibaleHouse';
 import NewHouse from '../components/dash/NewHouse';
 import HouseCustomers from '../components/dash/HouseCustomers';
+import HostSettings from '../components/dash/HostSettings';
+import HostOverview from '../components/dash/HostOverview';
+import RenterOverview from '../components/dash/RenterOverview';
+import RenterSettings from '../components/dash/RenterSettings';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -17,24 +21,29 @@ const Dashboard = () => {
     setUserData(storedData);
     // Set default active view based on role
     if (storedData?.data?.UserInfo?.role === 'renter') {
-      setActiveView('available-houses');
+      setActiveView('renter-overview');
     } else {
-      setActiveView('manage-houses');
+      setActiveView('host-overview');
     }
   }, []);
 
   const isRenter = userData?.data?.UserInfo?.role === 'renter';
 
   const navigation = isRenter
-    ? [
-        { name: 'Available Houses', icon: Home, id: 'available-houses' },
-        // { name: 'Book House', icon: Book, id: 'book-house' },
+      ? [
+        // Renter-specific menu items
+        { name: 'Overview', icon: Home, id: 'renter-overview' },
+        { name: 'Available Houses', icon: Search, id: 'available-houses' },
         { name: 'Booked Houses', icon: BookOpen, id: 'booked-houses' },
+        { name: 'Settings', icon: Settings, id: 'renter-settings' },
       ]
     : [
-        { name: 'Manage Houses', icon: Home, id: 'manage-houses' },
+        // Host-specific menu items
+        { name: 'Overview', icon: Home, id: 'host-overview' },
+        { name: 'Manage Houses', icon: LayoutGrid, id: 'manage-houses' },
         { name: 'New House', icon: Plus, id: 'new-house' },
-        { name: 'Approve House', icon: Plus, id: 'customer' },
+        { name: 'Approve House', icon: CheckCircle, id: 'approve-house' },
+        { name: 'Settings', icon: Settings, id: 'host-settings' },
       ];
       //logout remove userData localStorage
       const logout = () => {
@@ -99,7 +108,7 @@ const Dashboard = () => {
                 className={`
                   w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left
                   ${activeView === item.id 
-                    ? 'bg-blue-50 text-blue-600' 
+                    ? 'bg-orange-50 text-orange-600' 
                     : 'text-gray-700 hover:bg-gray-50'}
                 `}
               >
@@ -111,10 +120,6 @@ const Dashboard = () => {
 
           {/* Bottom Actions */}
           <div className="p-4 border-t space-y-1">
-            <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
-              <Settings size={20} />
-              <span>Settings</span>
-            </button>
             <button onClick={()=> logout()} className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-50">
               <LogOut size={20} />
               <span>Logout</span>
@@ -146,6 +151,18 @@ const Dashboard = () => {
             )}
             {activeView === 'customer' && (
               <HouseCustomers/>
+            )}
+            {activeView === 'renter-settings' && (
+              <RenterSettings/>
+            )}
+            {activeView === 'renter-overview' && (
+              <RenterOverview/>
+            )}
+            {activeView === 'host-overview' && (
+              <HostOverview/>
+            )}
+            {activeView === 'host-settings' && (
+              <HostSettings/>
             )}
           </div>
         </div>

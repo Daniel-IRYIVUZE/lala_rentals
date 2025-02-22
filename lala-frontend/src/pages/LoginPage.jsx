@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff, Home, Mail, Lock, ArrowRight, Github } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode'; // For decoding Google JWT
+import { jwtDecode } from 'jwt-decode';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Validate form inputs
+  // Validation and handlers remain the same
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email) {
@@ -32,20 +32,17 @@ const LoginPage = () => {
     return newErrors;
   };
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: name === 'rememberMe' ? checked : value,
     }));
-    // Clear errors when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
@@ -81,52 +78,44 @@ const LoginPage = () => {
     }
   };
 
- // Handle social login (Google)
-const handleSocialLogin = async (provider, userInfo) => {
-  setIsLoading(true);
-  setErrors({});
-  setSuccessMessage('');
+  const handleSocialLogin = async (provider, userInfo) => {
+    setIsLoading(true);
+    setErrors({});
+    setSuccessMessage('');
 
-  let userObj;
-  try {
-    if (provider === 'Google') {
-      // Decode Google token to extract user information
-      userObj = jwtDecode(userInfo.credential);
-      console.log(userObj);  // To inspect the decoded Google user object
-    }
-
-    // Send the Google email to your backend to authenticate
-    const response = await axios.post(
-      `${import.meta.env.VITE_LOCAL}auth/google-auth-token?Email=${userObj.email}`,
-      {}
-    );
-
-    // Check if the response is successful
-    if (response.status === 200) {
-      localStorage.setItem('userData', JSON.stringify(response.data));  // Save user data to local storage
-      setSuccessMessage('Login successful! Redirecting to Dashboard...');
-      setTimeout(() => window.location.href ="/dashboard", 1000);  // Redirect after 1 second
-    }
-  } catch (error) {
-    // Handle errors appropriately
-    if (error.response) {
-      if (error.response.status === 404) {
-        // Handle 404 error
-        setErrors({ submit: `no Account Assoicated with This Email ${userObj.email}` });
-      } else {
-        // Handle other errors
-        setErrors({ submit: `${provider} login failed. Please try again.` });
+    let userObj;
+    try {
+      if (provider === 'Google') {
+        userObj = jwtDecode(userInfo.credential);
+        console.log(userObj);
       }
-    } else {
-      setErrors({ submit: 'An unexpected error occurred. Please try again.' });
-      console.error(error);  // Log any unexpected errors
-    }
-  } finally {
-    setIsLoading(false);
-  }
-};
 
-  // Initialize Google Auth
+      const response = await axios.post(
+        `${import.meta.env.VITE_LOCAL}auth/google-auth-token?Email=${userObj.email}`,
+        {}
+      );
+
+      if (response.status === 200) {
+        localStorage.setItem('userData', JSON.stringify(response.data));
+        setSuccessMessage('Login successful! Redirecting to Dashboard...');
+        setTimeout(() => window.location.href ="/dashboard", 1000);
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          setErrors({ submit: `No Account Associated with This Email ${userObj.email}` });
+        } else {
+          setErrors({ submit: `${provider} login failed. Please try again.` });
+        }
+      } else {
+        setErrors({ submit: 'An unexpected error occurred. Please try again.' });
+        console.error(error);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     const initializeGoogleAuth = () => {
       if (window.google?.accounts?.id) {
@@ -144,24 +133,22 @@ const handleSocialLogin = async (provider, userInfo) => {
     initializeGoogleAuth();
   }, [navigate]);
 
-  // Navigation handlers
   const handleForgotPassword = () => navigate('/forgot-password');
   const handleSignUp = () => navigate('/signup');
   const handleHomeClick = () => navigate('/');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-2">
-      {/* Home Button */}
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center p-2">
       <button
         onClick={handleHomeClick}
         className="absolute top-6 left-6 p-2 rounded-full bg-white shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
       >
-        <Home className="w-5 h-5 text-blue-900" />
+        <Home className="w-5 h-5 text-orange-600" />
       </button>
 
       <div className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-4xl transform hover:shadow-3xl transition-all duration-500">
         {/* Left Side */}
-        <div className="relative bg-gradient-to-br from-blue-900 to-blue-800 text-white p-8 flex flex-col justify-center items-center md:w-1/2 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-orange-600 to-orange-500 text-white p-8 flex flex-col justify-center items-center md:w-1/2 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0 bg-repeat bg-center"
@@ -204,7 +191,7 @@ const handleSocialLogin = async (provider, userInfo) => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all pl-10`}
+                  } focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all pl-10`}
                   placeholder="Enter your email"
                 />
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -226,7 +213,7 @@ const handleSocialLogin = async (provider, userInfo) => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.password ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all pl-10`}
+                  } focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all pl-10`}
                   placeholder="Enter your password"
                 />
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -254,14 +241,14 @@ const handleSocialLogin = async (provider, userInfo) => {
                   name="rememberMe"
                   checked={formData.rememberMe}
                   onChange={handleChange}
-                  className="w-4 h-4 text-blue-900 border-gray-300 rounded focus:ring-blue-500"
+                  className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
                 />
                 <span className="text-gray-600">Remember me</span>
               </label>
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className="text-sm text-blue-900 hover:text-blue-800 font-medium"
+                className="text-sm text-orange-600 hover:text-orange-700 font-medium"
               >
                 Forgot Password?
               </button>
@@ -277,7 +264,7 @@ const handleSocialLogin = async (provider, userInfo) => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-900 to-blue-700 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center space-x-2 group disabled:opacity-70"
+              className="w-full bg-gradient-to-r from-orange-600 to-orange-500 text-white py-3 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 flex items-center justify-center space-x-2 group disabled:opacity-70"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-t-2 border-white rounded-full animate-spin" />
@@ -316,7 +303,7 @@ const handleSocialLogin = async (provider, userInfo) => {
               <button
                 type="button"
                 onClick={handleSignUp}
-                className="text-blue-900 hover:text-blue-800 font-medium"
+                className="text-orange-600 hover:text-orange-700 font-medium"
               >
                 Sign up
               </button>

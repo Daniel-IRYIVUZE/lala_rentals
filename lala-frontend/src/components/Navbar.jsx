@@ -18,9 +18,9 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Home', icon: <Home size={18} /> },
     { to: '/services', label: 'Services', icon: <BookOpen size={18} /> },
+    { to: '/hosts', label: 'Hosts', icon: <Users size={18} /> },
     { to: '/properties', label: 'Property', icon: <Building size={18} /> },
     { to: '/contact', label: 'Contact', icon: <Phone size={18} /> },
-    { to: '/hosts', label: 'Hosts', icon: <Users size={18} /> },
   ];
 
   return (
@@ -30,8 +30,8 @@ const Navbar = () => {
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white text-gray-800 shadow-lg' 
-            : 'bg-transparent text-blue-900'
+            ? 'bg-[#E6E6E6] text-[#1B1B1B] shadow-lg' 
+            : 'bg-transparent text-[#bb2a0d]'
         }`}
       >
         <div className="container mx-auto px-4">
@@ -42,7 +42,7 @@ const Navbar = () => {
               className="flex items-center gap-2 font-bold text-2xl"
             >
               <Heart 
-                className={`${isScrolled ? 'text-blue-900' : 'text-white'}`} 
+                className={`${isScrolled ? 'text-[#1B1B1B]' : 'text-[#bb2a0d]'}`} 
                 size={24} 
               />
               <span className="font-extrabold">Lala Rentals</span>
@@ -54,11 +54,11 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   to={link.to}
-                  className={`flex items-center gap-2 font-medium hover:text-blue-500 transition-colors duration-300 relative group py-2`}
+                  className={`flex items-center gap-2 font-medium hover:text-[#bb2a0d] transition-colors duration-300 relative group py-2`}
                 >
                   {link.icon}
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#bb2a0d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 </Link>
               ))}
               
@@ -67,8 +67,8 @@ const Navbar = () => {
                 to="/login"
                 className={`flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
                   isScrolled
-                    ? 'bg-white text-blue-900 hover:bg-blue-700'
-                    : 'bg-white text-blue-900 hover:bg-blue-50'
+                    ? 'bg-[#E6E6E6] text-[#1B1B1B] hover:bg-[#bb2a0d] hover:text-white'
+                    : 'bg-white text-[#1B1B1B] hover:bg-[#bb2a0d] hover:text-white'
                 }`}
               >
                 <LogIn size={18} />
@@ -94,7 +94,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className={`md:hidden ${
-                isScrolled ? 'bg-white' : 'bg-blue-900'
+                isScrolled ? 'bg-[#E6E6E6]' : 'bg-[#1B1B1B] text-white'
               }`}
             >
               <div className="container mx-auto px-4 py-4 space-y-4">
@@ -114,8 +114,8 @@ const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-2 p-2 rounded-lg font-semibold ${
                     isScrolled
-                      ? 'bg-blue-900 text-white'
-                      : 'bg-white text-blue-900'
+                      ? 'bg-[#1B1B1B] text-white hover:bg-[#bb2a0d]'
+                      : 'bg-white text-[#1B1B1B] hover:bg-[#bb2a0d] hover:text-white'
                   }`}
                 >
                   <LogIn size={18} />

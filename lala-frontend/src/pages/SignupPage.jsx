@@ -183,7 +183,7 @@ const SignupPage = () => {
                   onClick={handleHomeClick}
                   className="absolute top-6 left-6 p-2 rounded-full bg-white shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
                 >
-                  <Home className="w-5 h-5 text-blue-900" />
+                  <Home className="w-5 h-5 text-orange-700" />
                 </button>
           <div className="relative">
             <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -192,7 +192,7 @@ const SignupPage = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
               placeholder="Full Name"
             />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -205,7 +205,7 @@ const SignupPage = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
               placeholder="Email Address"
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -218,7 +218,7 @@ const SignupPage = () => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
               placeholder="Password"
             />
             {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
@@ -242,7 +242,7 @@ const SignupPage = () => {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
             placeholder="Phone Number"
           />
           {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
@@ -255,7 +255,7 @@ const SignupPage = () => {
             name="location"
             value={formData.location}
             onChange={handleInputChange}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
             placeholder="Location"
           />
           {errors.location && <p className="text-red-500 text-sm mt-1">{errors.location}</p>}
@@ -268,7 +268,7 @@ const SignupPage = () => {
             name="idNumber"
             value={formData.idNumber}
             onChange={handleInputChange}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
             placeholder="ID/Passport Number"
           />
           {errors.idNumber && <p className="text-red-500 text-sm mt-1">{errors.idNumber}</p>}
@@ -281,7 +281,7 @@ const SignupPage = () => {
             name="nationality"
             value={formData.nationality}
             onChange={handleInputChange}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-700"
             placeholder="Nationality"
           />
           {errors.nationality && <p className="text-red-500 text-sm mt-1">{errors.nationality}</p>}
@@ -314,14 +314,14 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-indigo-50 p-4">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-4xl"
       >
-        <div className="bg-gradient-to-br from-blue-900 to-indigo-600 text-white p-10 flex flex-col justify-center items-center md:w-1/2">
+        <div className="bg-gradient-to-br from-orange-600 to-orange-700 text-white p-10 flex flex-col justify-center items-center md:w-1/2">
           <motion.h1 
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -346,8 +346,8 @@ const SignupPage = () => {
               onClick={() => setRole('renter')}
               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
                 role === 'renter' 
-                  ? 'bg-white text-blue-900 shadow-lg' 
-                  : 'bg-blue-500 text-white hover:bg-blue-400'
+                  ? 'bg-white text-orange-700 shadow-lg' 
+                  : 'bg-orange-500 text-white hover:bg-orange-400'
               }`}
             >
               Renter
@@ -359,8 +359,8 @@ const SignupPage = () => {
               onClick={() => setRole('host')}
               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
                 role === 'host' 
-                  ? 'bg-white text-blue-900 shadow-lg' 
-                  : 'bg-blue-500 text-white hover:bg-blue-400'
+                  ? 'bg-white text-orange-700 shadow-lg' 
+                  : 'bg-orange-500 text-white hover:bg-orange-400'
               }`}
             >
               Host
@@ -403,7 +403,7 @@ const SignupPage = () => {
                 onClick={() => step === 1 ? setStep(2) : RegisterUser()}
                 className={`flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition duration-300 ${
                   step === 1 
-                    ? 'bg-blue-900 text-white hover:bg-blue-700'
+                    ? 'bg-orange-700 text-white hover:bg-orange-700'
                     : 'bg-green-600 text-white hover:bg-green-700'
                 }`}
               >
@@ -443,7 +443,7 @@ const SignupPage = () => {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="text-blue-900 hover:text-blue-800 font-medium"
+                className="text-orange-700 hover:text-orange-700 font-medium"
               >
                 Sign In
               </button>

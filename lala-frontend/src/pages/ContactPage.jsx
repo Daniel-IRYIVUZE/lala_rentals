@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Send, CheckCircle, MessageSquare } from 'lucide-react';
-import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const ContactPage = () => {
   const [formStatus, setFormStatus] = useState('idle');
@@ -23,13 +23,13 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-        <Navbar/>
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+      <Navbar/>
       {/* Hero Section */}
       <motion.section 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[40vh] flex items-center justify-center bg-blue-900 overflow-hidden"
+        className="relative h-[40vh] flex items-center justify-center bg-orange-700 overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-20" />
         <motion.div 
@@ -54,10 +54,10 @@ const ContactPage = () => {
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-xl p-8"
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="flex items-center gap-3 mb-8">
-                <MessageSquare className="text-blue-900" size={28} />
+                <MessageSquare className="text-orange-700" size={28} />
                 <h2 className="text-2xl font-bold">Send Us a Message</h2>
               </div>
               
@@ -68,7 +68,7 @@ const ContactPage = () => {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-lg border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                     placeholder="Your name"
                     required
                   />
@@ -79,7 +79,7 @@ const ContactPage = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-lg border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                     placeholder="your@email.com"
                     required
                   />
@@ -89,7 +89,7 @@ const ContactPage = () => {
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-lg border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                     rows="5"
                     placeholder="Your message"
                     required
@@ -98,7 +98,7 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   disabled={formStatus === 'submitting'}
-                  className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
+                  className="w-full bg-orange-700 text-white py-4 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300 flex items-center justify-center gap-2"
                 >
                   {formStatus === 'submitting' ? (
                     <>Sending...</>
@@ -122,7 +122,7 @@ const ContactPage = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-xl p-8"
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300"
             >
               <h2 className="text-2xl font-bold mb-8">Contact Information</h2>
               
@@ -131,37 +131,38 @@ const ContactPage = () => {
                 <motion.a
                   href="https://maps.google.com"
                   target="_blank"
-                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-orange-50 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
-                  <MapPin className="text-blue-900 flex-shrink-0" size={24} />
+                  <MapPin className="text-orange-700 flex-shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Visit Our Office</h3>
-                    <p className="text-gray-600">KG 125 St, Kigali, Rwanda</p>
+                    <p className="text-gray-700">KG 125 St, Kigali, Rwanda</p>
                   </div>
                 </motion.a>
 
                 <motion.a
-                  href="mailto:danieliryivuze4@gmail.com.com"
-                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                  href="mailto:info@lalarentals.com"
+                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-orange-50 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
-                  <Mail className="text-blue-900 flex-shrink-0" size={24} />
+                  <Mail className="text-orange-700 flex-shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Email Us</h3>
-                    <p className="text-gray-600">info@lalarentals.com</p>
+                    <p className="text-gray-700">info@lalarentals.com</p>
                   </div>
                 </motion.a>
 
                 <motion.a
-                  href="tel:+250 780 162 164"
-                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                  href="tel:+250780162164"
+                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-orange-50 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
-                  <Phone className="text-blue-900 flex-shrink-0" size={24} />
+                  <Phone className="text-orange-700 flex-shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Call Us</h3>
-                    <p className="text-gray-600">+250 780 162 164</p>
+                    <p className="text-gray-700">+250 780 162 164</p>
                   </div>
                 </motion.a>
               </div>
