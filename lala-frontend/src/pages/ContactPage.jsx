@@ -137,12 +137,12 @@ const ContactPage = () => {
                   <MapPin className="text-blue-900 flex-shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Visit Our Office</h3>
-                    <p className="text-gray-600">123 Lala Street, Melbourne, VIC 3000, Australia</p>
+                    <p className="text-gray-600">KG 125 St, Kigali, Rwanda</p>
                   </div>
                 </motion.a>
 
                 <motion.a
-                  href="mailto:info@lalarentals.com"
+                  href="mailto:danieliryivuze4@gmail.com.com"
                   className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
@@ -154,14 +154,14 @@ const ContactPage = () => {
                 </motion.a>
 
                 <motion.a
-                  href="tel:+61123456789"
+                  href="tel:+250 780 162 164"
                   className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
                   <Phone className="text-blue-900 flex-shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Call Us</h3>
-                    <p className="text-gray-600">+61 123 456 789</p>
+                    <p className="text-gray-600">+250 780 162 164</p>
                   </div>
                 </motion.a>
               </div>
@@ -169,7 +169,7 @@ const ContactPage = () => {
               {/* Map */}
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531615!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2a6c8e2299e!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1625070000000!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.567122928704!2d30.128671674967038!3d-1.9248118480577001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca700083d0b83%3A0xc16a220809d8b906!2scyamurunguje%20center%20(ingenzi%20village)!5e0!3m2!1sen!2srw!4v1740178135971!5m2!1sen!2srw"
                   width="100%"
                   height="300"
                   style={{ border: 0 }}

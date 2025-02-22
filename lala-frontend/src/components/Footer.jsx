@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ExternalLink, Heart } from 'lucide-react';
+import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin, ExternalLink, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -54,13 +54,13 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-6">Connect With Us</h3>
             <div className="space-y-4">
               {[
-                { icon: <Facebook size={20} />, label: 'Facebook', color: 'hover:text-blue-500' },
+                { icon: <Linkedin size={20} />, label: 'Linkedin', color: 'hover:text-blue-500' },
                 { icon: <Twitter size={20} />, label: 'Twitter', color: 'hover:text-blue-400' },
                 { icon: <Instagram size={20} />, label: 'Instagram', color: 'hover:text-pink-500' }
               ].map((social) => (
                 <a 
                   key={social.label}
-                  href="#" 
+                  href="https://www.linkedin.com/in/daniel-iryivuze-992141278/" 
                   className={`flex items-center gap-3 text-gray-400 ${social.color} transition-colors duration-300 group`}
                 >
                   <span className="transform group-hover:scale-110 transition-transform duration-300">
@@ -82,10 +82,10 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start gap-3 text-gray-400">
                 <MapPin className="mt-1 flex-shrink-0" size={20} />
-                <p>123 Lala Street, Melbourne, VIC 3000</p>
+                <p>KG 125 St, Kigali, Rwanda</p>
               </div>
               <a 
-                href="mailto:info@lalarentals.com" 
+                href="mailto:danieliryivuze4@gmail.com" 
                 className="flex items-center gap-3 text-gray-400 hover:text-blue-500 transition-colors duration-300"
               >
                 <Mail size={20} />
@@ -96,7 +96,7 @@ const Footer = () => {
                 className="flex items-center gap-3 text-gray-400 hover:text-blue-500 transition-colors duration-300"
               >
                 <Phone size={20} />
-                +61 123 456 789
+                +250 780 162 164
               </a>
             </div>
           </motion.div>

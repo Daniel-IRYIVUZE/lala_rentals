@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // For redirection
 import { 
   Home, User, Building2, Mail, Lock, Phone, Globe, 
-  MapPin, FileText, Camera, ChevronRight, ChevronLeft
+  MapPin, FileText, Camera, ChevronRight, ChevronLeft,
+  Github
 } from 'lucide-react';
 import { jwtDecode } from 'jwt-decode';
 
@@ -25,7 +26,7 @@ const SignupPage = () => {
   const [errors, setErrors] = useState({}); // For validation errors
   const [apiError, setApiError] = useState(''); // For API errors
   const navigate = useNavigate(); // For redirection
-
+  const handleLogin = () => navigate('/login');
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -63,6 +64,9 @@ const SignupPage = () => {
     if (file) {
       const base64 = await convertImageToBase64(file);
       setFormData(prev => ({ ...prev, profileImage: base64 }));
+      setIsLoading(true);
+      setErrors({});
+      setSuccessMessage('');
       setImagePreview(base64); // Set image preview
     }
   };
@@ -124,6 +128,8 @@ const SignupPage = () => {
       console.error("Registration Error:", error);
     }
   };
+  const [isLoading, setIsLoading] = useState(false);
+  const handleHomeClick = () => navigate('/');
   //google
   const handleSocialLogin = async (userInfo) => {
   
@@ -172,6 +178,13 @@ const SignupPage = () => {
           transition={{ duration: 0.5 }}
           className="space-y-4"
         >
+                {/* Home Button */}
+                <button
+                  onClick={handleHomeClick}
+                  className="absolute top-6 left-6 p-2 rounded-full bg-white shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                >
+                  <Home className="w-5 h-5 text-blue-900" />
+                </button>
           <div className="relative">
             <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -221,6 +234,7 @@ const SignupPage = () => {
         transition={{ duration: 0.5 }}
         className="space-y-4"
       >
+        
         <div className="relative">
           <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           <input
@@ -312,7 +326,7 @@ const SignupPage = () => {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl font-bold mb-4"
+            className="text-4xl font-bold mb-4 text-center"
           >
             Welcome to Lala Rentals
           </motion.h1>
@@ -410,8 +424,30 @@ const SignupPage = () => {
               <div className="border-t w-full border-gray-300"></div>
             </div>
 
-            <div id="signInDiv"></div>
-          </div>
+            <div className="grid grid-cols-2 gap-24">
+              <div id="signInDiv"></div>
+              <button
+                type="button"
+                onClick={() => handleSocialLogin('GitHub')}
+                disabled={isLoading}
+                className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-all space-x-2 bg-white disabled:opacity-70"
+              >
+                <Github className="w-6 h-6" />
+                <span className="text-gray-700">GitHub</span>
+              </button>
+              </div>
+            </div>
+
+            <p className="text-center text-gray-600 mt-8">
+              Already have an account?{' '}
+              <button
+                type="button"
+                onClick={handleLogin}
+                className="text-blue-900 hover:text-blue-800 font-medium"
+              >
+                Sign In
+              </button>
+            </p>
         </div>
       </motion.div>
     </div>

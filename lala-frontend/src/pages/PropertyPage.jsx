@@ -18,36 +18,53 @@ const PropertyPage = () => {
   const properties = [
     {
       id: 1,
-      title: "Luxurious Beachfront Villa",
-      description: "Experience luxury living with this stunning beachfront villa featuring panoramic ocean views.",
-      price: 250,
-      location: "Gold Coast, Australia",
-      image: "/assets/hero-image.jpg",
+      title: "Luxury Hilltop Villa",
+      description: "An exclusive hilltop villa offering stunning views of the Rwandan countryside and premium amenities.",
+      price: 100,
+      location: "Musanze, Rwanda",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc2YVR_J99yM4coSYxP9kQn-oEJVceTKQlOg&s",
       roomType: "private",
-      rating: 4.8,
-      reviews: 124,
+      rating: 4.9,
+      reviews: 10,
       amenities: ["wifi", "parking", "coffee"],
       host: {
-        name: "Sarah Johnson",
-        image: "/api/placeholder/50/50",
+        name: "Blessing Keza",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jjvL-Ntbr5eGlNjyX1NXUTNZAzrTDKv_Xw&s",
         rating: 4.9
       }
     },
     {
       id: 2,
-      title: "Modern City Apartment",
+      title: "demi Apartment",
       description: "Stylish downtown apartment with city views and modern amenities.",
-      price: 175,
-      location: "Melbourne, Australia",
-      image: "/assets/hero-image.jpg",
+      price: 50,
+      location: "Kigali, Rwanda",
+      image: "https://q-xx.bstatic.com/xdata/images/hotel/max500/483355862.jpg?k=3a553091776e6058800f953f47d801fe440b0978b2d727ddbf37691a99978b13&o=",
       roomType: "double",
       rating: 4.6,
-      reviews: 89,
+      reviews: 7,
       amenities: ["wifi", "parking", "coffee"],
       host: {
-        name: "Michael Chen",
-        image: "/api/placeholder/50/50",
+        name: "Daniel Iryivuze",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKQgw3xZTxibPt2d0cJpoCdpCHCE9slMel8g&s",
         rating: 4.7
+      }
+    },
+    {
+    id: 3,
+    title: "Lake View Guest House",
+    description: "A cozy guest house near Lake Kivu, perfect for a peaceful getaway with nature.",
+    price: 100,
+    location: "Rubavu, Rwanda",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/f8/b8/ba/lake-view-guest-house.jpg?w=700&h=-1&s=1",
+    roomType: "shared",
+    rating: 4.6,
+    reviews: 6,
+    amenities: ["wifi", "parking"],
+    host: {
+      name: "Aline Mukamana",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jjvL-Ntbr5eGlNjyX1NXUTNZAzrTDKv_Xw&s",
+        rating: 4.9
       }
     }
   ];
@@ -165,7 +182,7 @@ const PropertyPage = () => {
                 <img
                   src={property.image}
                   alt={property.title}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover uppercase"
                 />
                 <button
                   onClick={() => toggleFavorite(property.id)}
@@ -183,7 +200,7 @@ const PropertyPage = () => {
 
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-xl font-bold text-gray-900">{property.title}</h2>
+                  <h2 className="text-lg font-bold text-gray-900 uppercase">{property.title}</h2>
                   <div className="flex items-center gap-1">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <span className="text-gray-700">{property.rating}</span>

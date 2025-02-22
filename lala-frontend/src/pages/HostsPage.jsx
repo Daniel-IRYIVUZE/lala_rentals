@@ -19,47 +19,48 @@ const HostsPage = () => {
   const hosts = [
     {
       id: 1,
-      name: "John Doe",
-      bio: "Experienced host with over 5 years of renting properties. Specializes in luxury apartments and vacation homes.",
-      contact: "john.doe@example.com",
-      location: "Melbourne, Australia",
-      image: "/api/placeholder/400/300",
-      rating: 4.9,
-      properties: 12,
-      reviews: 156,
-      badges: ["Superhost", "Quick Responder", "Local Expert"],
-      languages: ["English", "Spanish"],
+      name: "Daniel Iryivuze",
+      bio: "Dedicated host with over 4 years of experience in providing comfortable and modern apartments in Kigali.",
+      contact: "danieliryivuze4@example.com",
+      location: "Kigali, Rwanda",
+      image: "https://cdn-icons-png.flaticon.com/512/3/3729.png",
+      rating: 4.8,
+      properties: 10,
+      reviews: 120,
+      badges: ["Superhost", "Local Expert"],
+      languages: ["English", "Kinyarwanda", "French"],
       responseTime: "within an hour"
     },
     {
       id: 2,
-      name: "Jane Smith",
-      bio: "Passionate about creating memorable stays. Expert in boutique properties and unique experiences.",
-      contact: "jane.smith@example.com",
-      location: "Sydney, Australia",
-      image: "/api/placeholder/400/300",
-      rating: 4.8,
-      properties: 8,
-      reviews: 92,
-      badges: ["Superhost", "Experienced"],
-      languages: ["English", "French"],
+      name: "Aline Mukamana",
+      bio: "Passionate about hospitality, specializing in guest houses with beautiful lake views and serene surroundings.",
+      contact: "aline.m@example.com",
+      location: "Rubavu, Rwanda",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
+      rating: 4.7,
+      properties: 6,
+      reviews: 3,
+      badges: ["Superhost", "Quick Responder"],
+      languages: ["English", "Kinyarwanda"],
       responseTime: "within 2 hours"
     },
     {
       id: 3,
-      name: "Mike Johnson",
-      bio: "Former hotel manager turned property host. Brings professional hospitality experience to every rental.",
-      contact: "mike.j@example.com",
-      location: "Brisbane, Australia",
-      image: "/api/placeholder/400/300",
-      rating: 4.7,
-      properties: 5,
-      reviews: 64,
-      badges: ["Rising Star"],
-      languages: ["English", "German"],
-      responseTime: "within 3 hours"
+      name: "Blessing Keza",
+      bio: "Former travel guide turned luxury villa host, ensuring top-tier experiences in Rwanda's scenic regions.",
+      contact: "blessing.k@gmail.com.com",
+      location: "Musanze, Rwanda",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s",
+      rating: 4.9,
+      properties: 2,
+      reviews: 8,
+      badges: ["Superhost", "Luxury Stays Expert"],
+      languages: ["English", "French", "Swahili"],
+      responseTime: "within an hour"
     }
-  ];
+  ]
+  ;
 
   const locations = [...new Set(hosts.map(host => host.location))];
   
@@ -118,7 +119,7 @@ const HostsPage = () => {
                 <img
                   src={host.image}
                   alt={host.name}
-                  className="w-full h-48 object-cover"
+                  className="w-40 h-15 object-cover"
                 />
                 <div className="absolute top-4 right-4 flex gap-2">
                   {host.badges.map((badge, index) => (
