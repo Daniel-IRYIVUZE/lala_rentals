@@ -53,7 +53,7 @@ The project is divided into two main directories:
 
 ### 1. Clone the Repository
 ```sh
- [git clone https://github.com/yourusername/lala-rentals.git](https://github.com/Daniel-IRYIVUZE/lala_rentals.git)
+ git clone https://github.com/yourusername/lala-rentals.git
  cd lala-rentals
 ```
 
